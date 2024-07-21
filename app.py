@@ -20,7 +20,7 @@ user_input = st.text_input('Enter something:')
 
 if st.button('Submit'):
     if user_input:
-        result = sentiment_analysis(user_input)
-        st.write('You entered:', result)
+        results = sentiment_analysis(user_input)
+        st.write('The detected sentiment is', result[0].label, "with a score of",result[0].score)
     else:
         st.write('Please enter something!')
