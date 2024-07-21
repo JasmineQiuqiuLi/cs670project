@@ -1,4 +1,8 @@
 import streamlit as st
+from transformers import pipeline
+
+# load the pipeline
+sentiment_analysis = pipeline("sentiment-analysis")
 
 # Title of the application
 st.title('Welcome to my Streamlit App!')
@@ -15,8 +19,8 @@ st.write("Use the endpoint /predict to get sentiment analysis results.")
 user_input = st.text_input('Enter something:')
 
 if st.button('Submit'):
-    # This code runs when the button is clicked
     if user_input:
-        st.write('You entered:', user_input)
+        result = sentiment_analysis(user_input)
+        st.write('You entered:', result)
     else:
         st.write('Please enter something!')
