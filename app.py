@@ -11,3 +11,5 @@ st.write("Here's an emoji for you: :smiley:")
 
 # A placeholder for additional content
 st.write("Use the endpoint /predict to get sentiment analysis results.")
+
+user_input = st.text_input('Enter something:')
