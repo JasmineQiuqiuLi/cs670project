@@ -1,4 +1,6 @@
-streamlit
+streamlit==1.36.0
+easyocr
+bidi
 opencv-python-headless
 numpy
 easyocr
