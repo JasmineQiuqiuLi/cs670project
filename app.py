@@ -1,22 +1,24 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
-import uvicorn
+from flask import Flask, request, jsonify
+from transformers import pipeline
 
-app = FastAPI()
+app = Flask(__name__)
 
-class InputData(BaseModel):
-    text: str
+# Load the sentiment analysis model
+sentiment_analyzer = pipeline("sentiment-analysis")
 
-@app.get("/")
-def read_root():
-    return {"message": "Welcome to my Hugging Face demo API"}
+@app.route('/')
+def home():
+    return "Welcome to the Sentiment Analysis API!"
 
-@app.post("/predict/")
-def predict(input_data: InputData):
-    text = input_data.text
-    # For demonstration purposes, we just return the received text.
-    # Replace this part with your model inference code.
-    return {"predicted_text": text}
+@app.route('/predict', methods=['POST'])
+def predict():
+    data = request.get_json()
+    text = data['text']
+    result = sentiment_analyzer(text)[0]
+    return jsonify({
+        'label': result['label'],
+        'score': result['score']
+    })
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    app.run(host='0.0.0.0', port=5000)
