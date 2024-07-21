@@ -4,19 +4,16 @@ from transformers import pipeline
 # load the pipeline
 sentiment_analysis = pipeline("sentiment-analysis")
 
-# Title of the application
-st.title('Welcome to my Streamlit App!')
+# title
+st.title('Analyze Sentiment of Text!')
 
 # Display text
-st.write("This is a simple Streamlit application.")
+st.write("You will get a sentiment analysis after you enter something.")
 
-# Display emoji
-st.write("Here's an emoji for you: :smiley:")
+# show an emoji
+st.write("Let's try it: :smiley:")
 
-# A placeholder for additional content
-st.write("Use the endpoint /predict to get sentiment analysis results.")
-
-user_input = st.text_input('Enter something:')
+user_input = st.text_input('Enter something below:')
 
 if st.button('Submit'):
     if user_input:
