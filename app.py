@@ -1,24 +1,13 @@
-from flask import Flask, request, jsonify
-from transformers import pipeline
+import streamlit as st
 
-app = Flask(__name__)
+# Title of the application
+st.title('Welcome to my Streamlit App!')
 
-# Load the sentiment analysis model
-sentiment_analyzer = pipeline("sentiment-analysis")
+# Display text
+st.write("This is a simple Streamlit application.")
 
-@app.route('/')
-def home():
-    return "Welcome to the Sentiment Analysis API!"
+# Display emoji
+st.write("Here's an emoji for you: :smiley:")
 
-@app.route('/predict', methods=['POST'])
-def predict():
-    data = request.get_json()
-    text = data['text']
-    result = sentiment_analyzer(text)[0]
-    return jsonify({
-        'label': result['label'],
-        'score': result['score']
-    })
-
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+# A placeholder for additional content
+st.write("Use the endpoint /predict to get sentiment analysis results.")
