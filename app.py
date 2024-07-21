@@ -13,3 +13,10 @@ st.write("Here's an emoji for you: :smiley:")
 st.write("Use the endpoint /predict to get sentiment analysis results.")
 
 user_input = st.text_input('Enter something:')
+
+if st.button('Submit'):
+    # This code runs when the button is clicked
+    if user_input:
+        st.write('You entered:', user_input)
+    else:
+        st.write('Please enter something!')
